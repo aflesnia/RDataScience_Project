@@ -7,7 +7,7 @@ subtitle: Subtitle here if desired
 # Introduction
 Sea Ice  
 
-> I know words.  I have the best words.  ~ Donald Trump
+> I will be focusing on the relationship between rising temperatures and sea ice levels in the Arctic as this is a major indication of climate change currently. I will examine trends in sea ice extents over the course of decades in comparison with warming event data (frequency, duration, etc). I will proceed to create graphics that will demonstrate the relationships between these factors and interpret their meanings. 
 
 # Materials and methods
 
