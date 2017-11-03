@@ -1,11 +1,11 @@
 ---
-title: "I have the best titles"
-author: Your name here
+title: "Sea Ice and Climate Change"
+author: Amelia Lesniak
 subtitle: Subtitle here if desired
 ---
 
 # Introduction
-My really awesome and complete introduction will go here.  
+Sea Ice  
 
 > I know words.  I have the best words.  ~ Donald Trump
 
@@ -14,6 +14,8 @@ My really awesome and complete introduction will go here.
 Narrative and most code will go here.  Describe what you are doing and show how to do it (with code).
 
 You can do bullets like this:
+C:\Users\Local1\Documents\R Project
+
 
 * The first most important thing
 * The second most important thing
@@ -34,6 +36,33 @@ Here's my first code chunk.
 ```
 
 Load any required packages in a code chunk (you may need to install some packages):
+```{r}
+library(raster)
+library(rgdal)
+```
+```{r}
+thickness03 <- raster("C:/Users/Local1/Documents/R Project/laser1_thickness_mskd.tif")
+plot(thickness03)
+thickness08 <- raster("C:/Users/Local1/Documents/R Project/laser3k_thickness_mskd.tif")
+plot(thickness08)
+spplot(stack(thickness03, thickness08))
+boundary <- readOGR(dsn = "C:/Users/Local1/Documents/R Project/ARPA_polygon",layer = "ARPA_polygon")
+boundary <- boundary[boundary$OBJECTID==2,]
+projection(thickness03) <- CRS(proj4string(boundary))
+projection(thickness08) <- CRS(proj4string(boundary))
+thickness03_mask <- mask(thickness03, boundary)
+names(thickness03_mask) <- "Sea Ice Thickness in 2003"
+thickness08_mask <- mask(thickness08, boundary)
+names(thickness08_mask) <- "Sea Ice Thickness in 2008"
+spplot(stack(thickness03_mask, thickness08_mask))
+diff <- thickness08_mask - thickness03_mask
+names(diff) <- "Difference in Ice Thickness"
+spplot(diff)
+``` 
+
+
+
+
 
 ```{r, message=F, warning=F}
 library(dplyr)
