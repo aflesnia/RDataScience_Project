@@ -13,15 +13,6 @@ I will be focusing on the relationship between rising temperatures and sea ice l
 
 The following graphics display the Arctic in the years 2003 and 2008, displaying sea ice thickness in each year. The final graphic shows the difference in thickness between the two years compared.
 
-You can do bullets like this:
-C:\Users\Local1\Documents\R Project
-
-
-
-
-
-
-See [http://rmarkdown.rstudio.com/](http://rmarkdown.rstudio.com/) for all the amazing things you can do.
 
 
 
