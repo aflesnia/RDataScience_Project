@@ -82,7 +82,7 @@ n <- c(2, 9, 2+12, 5+12, 10+12, 2+12*2, 5+12*2, 10+12*2,
        2+12*3, 5+12*3, 10+12*3, 3+12*4, 10+12*4, 2+12*5, 10+12*5)
 n <- n-1
 names(st_mask) <- n
-spplot(st_mask)
+
 
 DF <- as.data.frame(st_mask, xy = TRUE, na.rm = TRUE, centroids = TRUE)
 DF$id <- 1:nrow(DF)
@@ -101,8 +101,9 @@ DF2$Month <- as.numeric(DF2$Month)
 
 
 # Results
-
-
+```{r}
+spplot(st_mask)
+```
 
 # Conclusions
 

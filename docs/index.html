@@ -379,9 +379,9 @@ n &lt;- c(2, 9, 2+12, 5+12, 10+12, 2+12*2, 5+12*2, 10+12*2,
        2+12*3, 5+12*3, 10+12*3, 3+12*4, 10+12*4, 2+12*5, 10+12*5)
 n &lt;- n-1
 names(st_mask) &lt;- n
-spplot(st_mask)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code>DF &lt;- as.data.frame(st_mask, xy = TRUE, na.rm = TRUE, centroids = TRUE)
+
+
+DF &lt;- as.data.frame(st_mask, xy = TRUE, na.rm = TRUE, centroids = TRUE)
 DF$id &lt;- 1:nrow(DF)
 DF2 &lt;- gather(DF, &quot;name&quot;, &quot;Thickness&quot;, 3:17)
 DF2$Month &lt;- substr(DF2$name, 2, length(DF2$name))
@@ -393,6 +393,8 @@ DF2$Month &lt;- as.numeric(DF2$Month)
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
+<pre class="r"><code>spplot(st_mask)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
