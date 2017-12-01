@@ -5,13 +5,15 @@ author: Amelia Lesniak
 ---
 
 # Introduction
-Sea Ice  
 
-I will be focusing on the relationship between rising temperatures and sea ice levels in the Arctic as this is a major indication of climate change currently. I will examine trends in sea ice extents over the course of decades in comparison with warming event data (frequency, duration, etc). I will proceed to create graphics that will demonstrate the relationships between these factors and interpret their meanings. 
+
+
+As an environmental student studying climate change, I am highly interested in the most substantially affected area on the globe: the Arctic. With rising temperatures comes sea ice extent and thickness changes. Such changes are easily detected with satellite imagery. In the following report, I have acquired data from the National Snow and Ice Data Center. I have selected sea ice thickness data between the years 2003 and 2008 as a simple representation of sea ice trends. I believe it is important to take into account not only long term trends but also month by month trends. This is information vital to conservation biogeographers and those interested in climate change as a whole. 
+
 
 # Materials and methods
 
-The following graphics display the Arctic in the years 2003 and 2008, displaying sea ice thickness in each year. The final graphic shows the difference in thickness between the two years compared.
+The following graphics display the Arctic in the years 2003 and 2008, displaying sea ice thickness in each year. The graphic following those shows the difference in thickness between the two years compared. My next step is to then focus on the monthly trends over the total 69 months. The Arctic is displayed in the following 15 boxes displays the thickness throughout the various months. Pink coloration is indicative of ice thickening. 
 
 
 
@@ -107,7 +109,7 @@ spplot(st_mask)
 
 # Conclusions
 
-
+Looking at the thickness plots between just 2003 and 2008, you can see a clear change in thickness around the southern portion of the Arctic. Various sections of pink coloration appear as darker and more blue in 2008 than in 2003. This coincides with my original hypothesis that sea ice thickness decreases as time passes, in the long term. My spplot for the monthly trends of the Arctic sea ice thickness indicates great variation amongst the months. You can visibly see the greatest areas of thickness in the months 25, 28, 37, 40, 45, and 50. This translates to February 2005, May 2005, February 2006, May 2006, October 2006, and March 2007. 
 
 # References
 
