@@ -315,10 +315,12 @@ div.tocify {
 <pre><code>## Warning: package &#39;raster&#39; was built under R version 3.4.2</code></pre>
 <pre><code>## Loading required package: sp</code></pre>
 <pre class="r"><code>library(rgdal)</code></pre>
-<pre><code>## rgdal: version: 1.2-11, (SVN revision 676)
+<pre><code>## Warning: package &#39;rgdal&#39; was built under R version 3.4.2</code></pre>
+<pre><code>## rgdal: version: 1.2-16, (SVN revision 701)
 ##  Geospatial Data Abstraction Library extensions to R successfully loaded
 ##  Loaded GDAL runtime: GDAL 2.2.0, released 2017/04/28
 ##  Path to GDAL shared files: C:/Users/Local1/Documents/R/win-library/3.4/rgdal/gdal
+##  GDAL binary built with GEOS: TRUE 
 ##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
 ##  Path to PROJ.4 shared files: C:/Users/Local1/Documents/R/win-library/3.4/rgdal/proj
 ##  Linking to sp version: 1.2-5</code></pre>
@@ -352,8 +354,42 @@ spplot(diff)</code></pre>
 library(ggplot2)
 library(maps)
 library(spocc)
+library(tidyr)
+library(broom)
 
 knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling</code></pre>
+<pre class="r"><code>tif_wd &lt;- &quot;C:/Users/Local1/Documents/R Project/Thickness/tif&quot;
+tifname &lt;- list.files(tif_wd)
+tifname &lt;- tifname[-16]
+
+st &lt;- stack()
+for (i in tifname){
+  r &lt;- raster(file.path(tif_wd, i))
+  st &lt;- stack(st, r)
+}
+
+projection(st) &lt;- CRS(proj4string(boundary))
+
+st_mask &lt;- mask(st, boundary)
+
+
+# n &lt;- c(&quot;20030203&quot;, &quot;20030911&quot;, &quot;20040203&quot;, &quot;20040506&quot;, &quot;20041011&quot;, &quot;20050203&quot;, &quot;20050506&quot;, &quot;20051011&quot;,
+#        &quot;20060203&quot;, &quot;20060506&quot;, &quot;20061011&quot;, &quot;20070304&quot;, &quot;20071011&quot;, &quot;20080203&quot;, &quot;20081010&quot;)
+n &lt;- c(2, 9, 2+12, 5+12, 10+12, 2+12*2, 5+12*2, 10+12*2,
+       2+12*3, 5+12*3, 10+12*3, 3+12*4, 10+12*4, 2+12*5, 10+12*5)
+n &lt;- n-1
+names(st_mask) &lt;- n
+spplot(st_mask)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>DF &lt;- as.data.frame(st_mask, xy = TRUE, na.rm = TRUE, centroids = TRUE)
+DF$id &lt;- 1:nrow(DF)
+DF2 &lt;- gather(DF, &quot;name&quot;, &quot;Thickness&quot;, 3:17)
+DF2$Month &lt;- substr(DF2$name, 2, length(DF2$name))
+DF2$Month &lt;- as.numeric(DF2$Month)
+# ln &lt;- DF2 %&gt;%
+#   group_by(id) %&gt;%
+#   do(tidy(lm(Thickness~Month, data = .)))
+# write.csv(DF2, file.path(wd, &quot;DF2.CSV&quot;), row.names = FALSE, na = &quot;&quot;)</code></pre>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>

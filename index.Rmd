@@ -89,10 +89,10 @@ DF$id <- 1:nrow(DF)
 DF2 <- gather(DF, "name", "Thickness", 3:17)
 DF2$Month <- substr(DF2$name, 2, length(DF2$name))
 DF2$Month <- as.numeric(DF2$Month)
-ln <- DF2 %>%
-  group_by(id) %>%
-  do(tidy(lm(Thickness~Month, data = .)))
-write.csv(DF2, file.path(wd, "DF2.CSV"), row.names = FALSE, na = "")
+# ln <- DF2 %>%
+#   group_by(id) %>%
+#   do(tidy(lm(Thickness~Month, data = .)))
+# write.csv(DF2, file.path(wd, "DF2.CSV"), row.names = FALSE, na = "")
 ```
 
 
