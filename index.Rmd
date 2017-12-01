@@ -24,6 +24,7 @@ library(raster)
 library(rgdal)
 ```
 ```{r}
+
 thickness03 <- raster("C:/Users/Local1/Documents/R Project/laser1_thickness_mskd.tif")
 plot(thickness03)
 thickness08 <- raster("C:/Users/Local1/Documents/R Project/laser3k_thickness_mskd.tif")
@@ -52,12 +53,47 @@ library(dplyr)
 library(ggplot2)
 library(maps)
 library(spocc)
+library(tidyr)
+library(broom)
 
 knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
 ```
 
 
+```{r}
+tif_wd <- "C:/Users/Local1/Documents/R Project/Thickness/tif"
+tifname <- list.files(tif_wd)
+tifname <- tifname[-16]
 
+st <- stack()
+for (i in tifname){
+  r <- raster(file.path(tif_wd, i))
+  st <- stack(st, r)
+}
+
+projection(st) <- CRS(proj4string(boundary))
+
+st_mask <- mask(st, boundary)
+
+
+# n <- c("20030203", "20030911", "20040203", "20040506", "20041011", "20050203", "20050506", "20051011",
+#        "20060203", "20060506", "20061011", "20070304", "20071011", "20080203", "20081010")
+n <- c(2, 9, 2+12, 5+12, 10+12, 2+12*2, 5+12*2, 10+12*2,
+       2+12*3, 5+12*3, 10+12*3, 3+12*4, 10+12*4, 2+12*5, 10+12*5)
+n <- n-1
+names(st_mask) <- n
+spplot(st_mask)
+
+DF <- as.data.frame(st_mask, xy = TRUE, na.rm = TRUE, centroids = TRUE)
+DF$id <- 1:nrow(DF)
+DF2 <- gather(DF, "name", "Thickness", 3:17)
+DF2$Month <- substr(DF2$name, 2, length(DF2$name))
+DF2$Month <- as.numeric(DF2$Month)
+ln <- DF2 %>%
+  group_by(id) %>%
+  do(tidy(lm(Thickness~Month, data = .)))
+write.csv(DF2, file.path(wd, "DF2.CSV"), row.names = FALSE, na = "")
+```
 
 
 
