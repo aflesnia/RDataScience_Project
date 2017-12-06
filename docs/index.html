@@ -304,11 +304,12 @@ div.tocify {
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>As an environmental student studying climate change, I am highly interested in the most substantially affected area on the globe: the Arctic. With rising temperatures comes sea ice extent and thickness changes. Such changes are easily detected with satellite imagery. In the following report, I have acquired data from the National Snow and Ice Data Center. I have selected sea ice thickness data between the years 2003 and 2008 as a simple representation of sea ice trends. I believe it is important to take into account not only long term trends but also month by month trends. This is information vital to conservation biogeographers and those interested in climate change as a whole.</p>
+<p>As an environmental student studying climate change, I am highly interested in the most substantially affected area on the globe: the Arctic. With rising temperatures comes sea ice extent and thickness changes. Such changes are easily detected with satellite imagery. In the following report, I have acquired data from the National Snow and Ice Data Center via the “Ice, Cloud, and Land Elevation Satellite” (ICESat), “Geoscience Laser Altimeter System” (GLAS), and the “Special Sensor Microwave/Imager” (SSM/I) presented by NASA. I have selected sea ice thickness data between the years 2003 and 2008 as a simple representation of sea ice trends. I believe it is important to take into account not only long term trends but also month by month trends. This is information vital to conservation biogeographers and those interested in climate change as a whole. My hypothesis regarding this project is that I will see a declining trend in sea ice thickness changes over the entire course of the six years and over the 69 months I believe I will see much fluctuation in sea ice thickness and not just all incline or all decline.</p>
 </div>
 <div id="materials-and-methods" class="section level1">
 <h1>Materials and methods</h1>
-<p>The following graphics display the Arctic in the years 2003 and 2008, displaying sea ice thickness in each year. The graphic following those shows the difference in thickness between the two years compared. My next step is to then focus on the monthly trends over the total 69 months. The Arctic is displayed in the following 15 boxes displays the thickness throughout the various months. Pink coloration is indicative of ice thickening.</p>
+<p>In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows: 1. Acquire and download data from National Snow and Ice Data Center 2. Display the thickness for both 2003 and 2008 via spplot 3. Download the Arctic boundary to isolate the area further 4. Visualize the difference in sea ice thickness 5. Visualize trends across the 69 months via spplot</p>
+<p>There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled “13” as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.</p>
 <p>Load any required packages in a code chunk (you may need to install some packages):</p>
 <pre class="r"><code>library(raster)</code></pre>
 <pre><code>## Warning: package &#39;raster&#39; was built under R version 3.4.2</code></pre>
@@ -323,6 +324,37 @@ div.tocify {
 ##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
 ##  Path to PROJ.4 shared files: C:/Users/Local1/Documents/R/win-library/3.4/rgdal/proj
 ##  Linking to sp version: 1.2-5</code></pre>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.4.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:raster&#39;:
+## 
+##     intersect, select, union</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ggplot2&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:raster&#39;:
+## 
+##     calc</code></pre>
+<pre class="r"><code>library(maps)</code></pre>
+<pre><code>## Warning: package &#39;maps&#39; was built under R version 3.4.2</code></pre>
+<pre class="r"><code>library(spocc)</code></pre>
+<pre><code>## Warning: package &#39;spocc&#39; was built under R version 3.4.2</code></pre>
+<pre class="r"><code>library(tidyr)</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.4.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;tidyr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:raster&#39;:
+## 
+##     extract</code></pre>
+<pre class="r"><code>library(broom)</code></pre>
 <pre class="r"><code>thickness03 &lt;- raster(&quot;C:/Users/Local1/Documents/R Project/laser1_thickness_mskd.tif&quot;)
 plot(thickness03)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
@@ -349,14 +381,7 @@ spplot(stack(thickness03_mask, thickness08_mask))</code></pre>
 names(diff) &lt;- &quot;Difference in Ice Thickness&quot;
 spplot(diff)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-2-5.png" width="672" /></p>
-<pre class="r"><code>library(dplyr)
-library(ggplot2)
-library(maps)
-library(spocc)
-library(tidyr)
-library(broom)
-
-knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling</code></pre>
+<pre class="r"><code>knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling</code></pre>
 <pre class="r"><code>tif_wd &lt;- &quot;C:/Users/Local1/Documents/R Project/Thickness/tif&quot;
 tifname &lt;- list.files(tif_wd)
 tifname &lt;- tifname[-16]
@@ -392,6 +417,7 @@ DF2$Month &lt;- as.numeric(DF2$Month)
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
+<p>The first visualization comparing sea ice thickness in 2003 and 2008 shows slight variation in multiple areas such as the northern portion of the Arctic and also areas bordering land in the southern portion. The darker blue areas are showing thicker sea ice while lighter colors show less thickness. This next plot displays the difference in sea ice thickness between the years 2003 and 2008. The areas of greater change in sea ice thickness are indicated by lighter colors like yellow and orange while areas showing little to no change are indicated in pink. The polygon shape of the Arctic was isolated in order to see the area of focus more clearly. This next visualization is used in order to see trends across 15 of the 69 total months spread out from February 2003 to October 2008. Similarly to my first plot displaying the years 2003 and 2008 side by side, this plot indicates sea ice thickness being greater in dark blue areas and lesser in lighter areas with colors such as pink or yellow.</p>
 <pre class="r"><code>spplot(st_mask)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>

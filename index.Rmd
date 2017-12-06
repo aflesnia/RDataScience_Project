@@ -6,15 +6,20 @@ author: Amelia Lesniak
 
 # Introduction
 
+As an environmental student studying climate change, I am highly interested in the most substantially affected area on the globe: the Arctic. With rising temperatures comes sea ice extent and thickness changes. Such changes are easily detected with satellite imagery. In the following report, I have acquired data from the National Snow and Ice Data Center via the “Ice, Cloud, and Land Elevation Satellite” (ICESat), “Geoscience Laser Altimeter System” (GLAS), and the “Special Sensor Microwave/Imager” (SSM/I) presented by NASA. I have selected sea ice thickness data between the years 2003 and 2008 as a simple representation of sea ice trends. I believe it is important to take into account not only long term trends but also month by month trends. This is information vital to conservation biogeographers and those interested in climate change as a whole. My hypothesis regarding this project is that I will see a declining trend in sea ice thickness changes over the entire course of the six years and over the 69 months I believe I will see much fluctuation in sea ice thickness and not just all incline or all decline. 
 
-
-As an environmental student studying climate change, I am highly interested in the most substantially affected area on the globe: the Arctic. With rising temperatures comes sea ice extent and thickness changes. Such changes are easily detected with satellite imagery. In the following report, I have acquired data from the National Snow and Ice Data Center. I have selected sea ice thickness data between the years 2003 and 2008 as a simple representation of sea ice trends. I believe it is important to take into account not only long term trends but also month by month trends. This is information vital to conservation biogeographers and those interested in climate change as a whole. 
 
 
 # Materials and methods
 
-The following graphics display the Arctic in the years 2003 and 2008, displaying sea ice thickness in each year. The graphic following those shows the difference in thickness between the two years compared. My next step is to then focus on the monthly trends over the total 69 months. The Arctic is displayed in the following 15 boxes displays the thickness throughout the various months. Pink coloration is indicative of ice thickening. 
+In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows:
+1.	Acquire and download data from National Snow and Ice Data Center
+2.	Display the thickness for both 2003 and 2008 via spplot 
+3.	Download the Arctic boundary to isolate the area further
+4.	Visualize the difference in sea ice thickness 
+5.	Visualize trends across the 69 months via spplot
 
+There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled "13" as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.
 
 
 
@@ -24,6 +29,12 @@ Load any required packages in a code chunk (you may need to install some package
 ```{r}
 library(raster)
 library(rgdal)
+library(dplyr)
+library(ggplot2)
+library(maps)
+library(spocc)
+library(tidyr)
+library(broom)
 ```
 ```{r}
 
@@ -51,12 +62,7 @@ spplot(diff)
 
 
 ```{r, message=F, warning=F}
-library(dplyr)
-library(ggplot2)
-library(maps)
-library(spocc)
-library(tidyr)
-library(broom)
+
 
 knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
 ```
@@ -103,6 +109,13 @@ DF2$Month <- as.numeric(DF2$Month)
 
 
 # Results
+
+The first visualization comparing sea ice thickness in 2003 and 2008 shows slight variation in multiple areas such as the northern portion of the Arctic and also areas bordering land in the southern portion. The darker blue areas are showing thicker sea ice while lighter colors show less thickness. 
+This next plot displays the difference in sea ice thickness between the years 2003 and 2008. The areas of greater change in sea ice thickness are indicated by lighter colors like yellow and orange while areas showing little to no change are indicated in pink. The polygon shape of the Arctic was isolated in order to see the area of focus more clearly.
+This next visualization is used in order to see trends across 15 of the 69 total months spread out from February 2003 to October 2008. Similarly to my first plot displaying the years 2003 and 2008 side by side, this plot indicates sea ice thickness being greater in dark blue areas and lesser in lighter areas with colors such as pink or yellow. 
+
+
+
 ```{r}
 spplot(st_mask)
 ```
