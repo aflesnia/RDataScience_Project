@@ -23,7 +23,7 @@ There were a total of 69 months being observed in this dataset represented from 
 
 
 
-
+# Results
 
 Load any required packages in a code chunk (you may need to install some packages):
 ```{r}
@@ -108,7 +108,7 @@ DF2$Month <- as.numeric(DF2$Month)
 
 
 
-# Results
+
 
 The first visualization comparing sea ice thickness in 2003 and 2008 shows slight variation in multiple areas such as the northern portion of the Arctic and also areas bordering land in the southern portion. The darker blue areas are showing thicker sea ice while lighter colors show less thickness. 
 This next plot displays the difference in sea ice thickness between the years 2003 and 2008. The areas of greater change in sea ice thickness are indicated by lighter colors like yellow and orange while areas showing little to no change are indicated in pink. The polygon shape of the Arctic was isolated in order to see the area of focus more clearly.
