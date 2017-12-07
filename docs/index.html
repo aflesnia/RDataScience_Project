@@ -310,83 +310,28 @@ div.tocify {
 <h1>Materials and methods</h1>
 <p>In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows: 1. Acquire and download data from National Snow and Ice Data Center 2. Display the thickness for both 2003 and 2008 via spplot 3. Download the Arctic boundary to isolate the area further 4. Visualize the difference in sea ice thickness 5. Visualize trends across the 69 months via spplot</p>
 <p>There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled “13” as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.</p>
-</div>
-<div id="results" class="section level1">
-<h1>Results</h1>
-<p>The first visualization comparing sea ice thickness in 2003 and 2008 shows slight variation in multiple areas such as the northern portion of the Arctic and also areas bordering land in the southern portion. The darker blue areas are showing thicker sea ice while lighter colors show less thickness. This next plot displays the difference in sea ice thickness between the years 2003 and 2008. The areas of greater change in sea ice thickness are indicated by lighter colors like yellow and orange while areas showing little to no change are indicated in pink. The polygon shape of the Arctic was isolated in order to see the area of focus more clearly. This next visualization is used in order to see trends across 15 of the 69 total months spread out from February 2003 to October 2008. Similarly to my first plot displaying the years 2003 and 2008 side by side, this plot indicates sea ice thickness being greater in dark blue areas and lesser in lighter areas with colors such as pink or yellow.</p>
 <p>Load any required packages in a code chunk (you may need to install some packages):</p>
-<pre class="r"><code>library(raster)</code></pre>
-<pre><code>## Warning: package &#39;raster&#39; was built under R version 3.4.2</code></pre>
-<pre><code>## Loading required package: sp</code></pre>
-<pre class="r"><code>library(rgdal)</code></pre>
-<pre><code>## Warning: package &#39;rgdal&#39; was built under R version 3.4.2</code></pre>
-<pre><code>## rgdal: version: 1.2-16, (SVN revision 701)
-##  Geospatial Data Abstraction Library extensions to R successfully loaded
-##  Loaded GDAL runtime: GDAL 2.2.0, released 2017/04/28
-##  Path to GDAL shared files: C:/Users/Local1/Documents/R/win-library/3.4/rgdal/gdal
-##  GDAL binary built with GEOS: TRUE 
-##  Loaded PROJ.4 runtime: Rel. 4.9.3, 15 August 2016, [PJ_VERSION: 493]
-##  Path to PROJ.4 shared files: C:/Users/Local1/Documents/R/win-library/3.4/rgdal/proj
-##  Linking to sp version: 1.2-5</code></pre>
-<pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.4.2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:raster&#39;:
-## 
-##     intersect, select, union</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(ggplot2)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggplot2&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:raster&#39;:
-## 
-##     calc</code></pre>
-<pre class="r"><code>library(maps)</code></pre>
-<pre><code>## Warning: package &#39;maps&#39; was built under R version 3.4.2</code></pre>
-<pre class="r"><code>library(spocc)</code></pre>
-<pre><code>## Warning: package &#39;spocc&#39; was built under R version 3.4.2</code></pre>
-<pre class="r"><code>library(tidyr)</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.4.2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;tidyr&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:raster&#39;:
-## 
-##     extract</code></pre>
-<pre class="r"><code>library(broom)</code></pre>
-<pre class="r"><code>thickness03 &lt;- raster(&quot;C:/Users/Local1/Documents/R Project/laser1_thickness_mskd.tif&quot;)
-plot(thickness03)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<pre class="r"><code>thickness08 &lt;- raster(&quot;C:/Users/Local1/Documents/R Project/laser3k_thickness_mskd.tif&quot;)
-plot(thickness08)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
-<pre class="r"><code>spplot(stack(thickness03, thickness08))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
-<pre class="r"><code>boundary &lt;- readOGR(dsn = &quot;C:/Users/Local1/Documents/R Project/ARPA_polygon&quot;,layer = &quot;ARPA_polygon&quot;)</code></pre>
+<pre class="r"><code>knitr::opts_chunk$set(cache = TRUE, echo = TRUE, warning = FALSE, message = FALSE)  # cache the results for quick compiling
+
+# Loading packages.
+library(raster)
+library(rgdal)
+library(dplyr)
+library(ggplot2)
+library(rasterVis)
+library(maps)
+library(spocc)
+library(tidyr)
+library(broom)</code></pre>
+<pre class="r"><code># Reading files.
+boundary &lt;- readOGR(dsn = &quot;C:/Users/Local1/Documents/R Project/ARPA_polygon&quot;,layer = &quot;ARPA_polygon&quot;)</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
 ## Source: &quot;C:/Users/Local1/Documents/R Project/ARPA_polygon&quot;, layer: &quot;ARPA_polygon&quot;
 ## with 2 features
 ## It has 4 fields</code></pre>
 <pre class="r"><code>boundary &lt;- boundary[boundary$OBJECTID==2,]
-projection(thickness03) &lt;- CRS(proj4string(boundary))
-projection(thickness08) &lt;- CRS(proj4string(boundary))
-thickness03_mask &lt;- mask(thickness03, boundary)
-names(thickness03_mask) &lt;- &quot;Sea Ice Thickness in 2003&quot;
-thickness08_mask &lt;- mask(thickness08, boundary)
-names(thickness08_mask) &lt;- &quot;Sea Ice Thickness in 2008&quot;
-spplot(stack(thickness03_mask, thickness08_mask))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-2-4.png" width="672" /></p>
-<pre class="r"><code>diff &lt;- thickness08_mask - thickness03_mask
-names(diff) &lt;- &quot;Difference in Ice Thickness&quot;
-spplot(diff)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-2-5.png" width="672" /></p>
-<pre class="r"><code>knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling</code></pre>
-<pre class="r"><code>tif_wd &lt;- &quot;C:/Users/Local1/Documents/R Project/Thickness/tif&quot;
+
+tif_wd &lt;- &quot;C:/Users/Local1/Documents/R Project/Thickness/tif&quot;
 tifname &lt;- list.files(tif_wd)
 tifname &lt;- tifname[-16]
 
@@ -398,28 +343,107 @@ for (i in tifname){
 
 projection(st) &lt;- CRS(proj4string(boundary))
 
-st_mask &lt;- mask(st, boundary)
-
-
-# n &lt;- c(&quot;20030203&quot;, &quot;20030911&quot;, &quot;20040203&quot;, &quot;20040506&quot;, &quot;20041011&quot;, &quot;20050203&quot;, &quot;20050506&quot;, &quot;20051011&quot;,
+st_mask &lt;- mask(st, boundary)</code></pre>
+<pre class="r"><code># n &lt;- c(&quot;20030203&quot;, &quot;20030911&quot;, &quot;20040203&quot;, &quot;20040506&quot;, &quot;20041011&quot;, &quot;20050203&quot;, &quot;20050506&quot;, &quot;20051011&quot;,
 #        &quot;20060203&quot;, &quot;20060506&quot;, &quot;20061011&quot;, &quot;20070304&quot;, &quot;20071011&quot;, &quot;20080203&quot;, &quot;20081010&quot;)
+# Change the name of raster file based on the number of month.
 n &lt;- c(2, 9, 2+12, 5+12, 10+12, 2+12*2, 5+12*2, 10+12*2,
        2+12*3, 5+12*3, 10+12*3, 3+12*4, 10+12*4, 2+12*5, 10+12*5)
 n &lt;- n-1
 names(st_mask) &lt;- n
 
-
+# Convert the stack file to a data frame.
 DF &lt;- as.data.frame(st_mask, xy = TRUE, na.rm = TRUE, centroids = TRUE)
 DF$id &lt;- 1:nrow(DF)
+
+# Reorganize the data frame to prepare for the linear regression.
 DF2 &lt;- gather(DF, &quot;name&quot;, &quot;Thickness&quot;, 3:17)
 DF2$Month &lt;- substr(DF2$name, 2, length(DF2$name))
-DF2$Month &lt;- as.numeric(DF2$Month)
-# ln &lt;- DF2 %&gt;%
-#   group_by(id) %&gt;%
-#   do(tidy(lm(Thickness~Month, data = .)))
-# write.csv(DF2, file.path(wd, &quot;DF2.CSV&quot;), row.names = FALSE, na = &quot;&quot;)</code></pre>
-<pre class="r"><code>spplot(st_mask)</code></pre>
+DF2$Month &lt;- as.numeric(DF2$Month)</code></pre>
+<pre class="r"><code># Perform linear regression between thickness and month for each pixel in the raster data
+linear &lt;- DF2 %&gt;% 
+  group_by(id) %&gt;% 
+  do(tidy(lm(Thickness ~ Month, data = .)))
+
+# Select the information of slop and p-value that we need from the linear regression results
+result &lt;- linear[linear$term == &quot;Month&quot;, c(&quot;id&quot;, &quot;estimate&quot;, &quot;p.value&quot;)]
+
+# Give the results some more intuitive names
+names(result) &lt;- c(&quot;id&quot;, &quot;Slope&quot;, &quot;pValue&quot;)
+
+# Combine the results with the original data frame
+trend &lt;- merge(DF2[, colnames(DF2) != &quot;name&quot;], result, by = &quot;id&quot;)
+
+# Remove the NA values in the data frame if any
+trend &lt;- trend[complete.cases(trend), ]</code></pre>
+</div>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>The first visualization comparing sea ice thickness in 2003 and 2008 shows slight variation in multiple areas such as the northern portion of the Arctic and also areas bordering land in the southern portion. The darker blue areas are showing thicker sea ice while lighter colors show less thickness. This next plot displays the difference in sea ice thickness between the years 2003 and 2008. The areas of greater change in sea ice thickness are indicated by lighter colors like yellow and orange while areas showing little to no change are indicated in pink. The polygon shape of the Arctic was isolated in order to see the area of focus more clearly.</p>
+<pre class="r"><code>spplot(st_mask, 
+       col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
+       main = &quot;Sea Ice Thickness from 2003 to 2008&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>firstThickness &lt;- st_mask[[1]]
+lastThickness &lt;- st_mask[[15]]
+
+names(firstThickness) &lt;- &quot;First Month&quot;
+names(lastThickness) &lt;- &quot;Last Month&quot;
+
+spplot(stack(firstThickness, lastThickness), 
+       col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
+       main = &quot;Sea Ice Thickness in the First Month and Last Month&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>diff &lt;- lastThickness - firstThickness
+names(diff) &lt;- &quot;Thick Difference&quot;</code></pre>
+<p>This next visualization is used in order to see trends across 15 of the 69 total months spread out from February 2003 to October 2008. Similarly to my first plot displaying the years 2003 and 2008 side by side, this plot indicates sea ice thickness being greater in dark blue areas and lesser in lighter areas with colors such as pink or yellow.</p>
+<pre class="r"><code># Calculate the average thickness for each month
+avgThickness &lt;- trend %&gt;% 
+  group_by(Month) %&gt;% 
+  summarize(avgThickness = mean(Thickness))
+
+# Create a scatterplot between the average thickness and month, and add a fitting line to show the general trend of average thickness 
+# (the shaded area represents the confidence interval of the linear regression).
+ggplot(avgThickness, aes(Month, avgThickness)) + 
+  geom_point(colour = &#39;blue&#39;) +
+  geom_smooth(method = &#39;lm&#39;, colour = &#39;red&#39;) +
+  labs(x = &quot;Month&quot;, 
+       y = &quot;Average Thickness&quot;) +
+  ggtitle(&quot;Average Thickness of Arctic Sea Ice from 2003 to 2008&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<pre class="r"><code># Create a histogram of the slope/trend.
+# As you can see, most slope/trend values here are negative, which indicates that the thickness of sea ice was decreasing at most raster pixels within our study area from 2003 to 2008.
+hist(trend$Slope, 
+     main = &quot;Trend of Arctic Sea Ice from 2003 to 2008&quot;, 
+     xlab = &quot;Trend&quot;, 
+     ylab = &quot;Number of Pixels&quot;,
+     border = &quot;darkgreen&quot;, 
+     col = &quot;green&quot;,
+     xlim = c(-0.04, 0.04),
+     ylim = c(0, 3.5e5))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<pre class="r"><code>## Rasterization
+# Convert the data frame to a spatial one.
+pts &lt;- trend
+coordinates(pts) &lt;- ~ x + y
+
+# Define the projection system for the generated spatial point data frame.
+proj4string(pts) &lt;- projection(st_mask)
+
+# Rasterize the spatial point data frame based on our raster stack file.
+slope &lt;- rasterize(pts, st_mask, field = &quot;Slope&quot;, fun = mean, na.rm = TRUE)
+names(slope) &lt;- &quot;Slope&quot;
+pValue &lt;- rasterize(pts, st_mask, field = &quot;pValue&quot;, fun = mean, na.rm = TRUE)
+names(pValue) &lt;- &quot;p-Value&quot;
+
+# Display the results.
+plot(stack(diff, slope), col = rev(brewer.pal(11, &quot;RdYlBu&quot;)), 
+       main = &quot;Change of Sea Ice Thickness from 2003 to 2008&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="r"><code>spplot(pValue, 
+       col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
+       main = &quot;P-Value of Linear Regression Analysis&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
