@@ -184,7 +184,7 @@ spplot(pValue,
 
 # Conclusions
 
-Looking at the thickness plots between just 2003 and 2008, you can see a clear change in thickness around the southern portion of the Arctic. Various sections of pink coloration appear as darker and more blue in 2008 than in 2003. This coincides with my original hypothesis that sea ice thickness decreases as time passes, in the long term. My spplot for the monthly trends of the Arctic sea ice thickness indicates great variation amongst the months. You can visibly see the greatest areas of thickness in the months 25, 28, 37, 40, 45, and 50. This translates to February 2005, May 2005, February 2006, May 2006, October 2006, and March 2007. 
+Overall, my hypothesis proved correct as the long term trend is negative and shows a decline in Arctic sea ice. The short term trends, over the 69 months, shows great variation overall but shows more variation towards the later half of the study (towards 2008). The short term trend, as proven, does not have to be negative month to month in order for the long term (6 year) trend to be negative. In a changing world where temperature rise is a growing concern, people often look at climate day to day, week to week, month to month expecting rising temperatures as an indication of climate change. In reality, short term variation often turns into long term negative trends if you look at the bigger picture. This is something I believe to be very crucial when studying and preventing climate change in the future.
 
 # References
 
