@@ -308,7 +308,7 @@ div.tocify {
 </div>
 <div id="materials-and-methods" class="section level1">
 <h1>Materials and methods</h1>
-<p>In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows: 1. Acquire and download data from National Snow and Ice Data Center. 2. Display the thickness for the total 69 months from 2003 to 2008 to see short term trends. 3. Display the thickness for the first month of 2003 and the last month of 2008 to see comparison. 4. Download the Arctic boundary to further isolate the study area. 5. Create a linear regression displaying the month against the average sea ice thickness for all of the months covered by the study. 6. Create a histogram visualizing the overall trend of sea ice thickness from 2003 to 2008 by comparing the trend with the number of pixels covered in the Arctic area. 7. Visualize the difference by subtracting the ice thickness in 2003 from that of 2008.</p>
+<p>In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows: 1. Acquire and download data from National Snow and Ice Data Center. 2. Display the thickness for the total 69 months from 2003 to 2008 to see short term trends. 3. Display the thickness for the first month of 2003 and the last month of 2008 to see comparison. 4. Download the Arctic boundary to further isolate the study area. 5. Create a linear regression displaying the month against the average sea ice thickness for all of the months covered by the study. 6. Visualize the difference by subtracting the ice thickness in 2003 from that of 2008.</p>
 <p>There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled “13” as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.</p>
 <p>Load any required packages in a code chunk (you may need to install some packages):</p>
 <pre class="r"><code>knitr::opts_chunk$set(cache = TRUE, echo = TRUE, warning = FALSE, message = FALSE, fig.align = &#39;center&#39;) # cache the results for quick compiling
@@ -413,17 +413,6 @@ ggplot(avgThickness, aes(Month, avgThickness)) +
        y = &quot;Average Thickness&quot;) +
   ggtitle(&quot;Average Thickness of Arctic Sea Ice from 2003 to 2008&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code># Create a histogram of the slope/trend.
-# As you can see, most slope/trend values here are negative, which indicates that the thickness of sea ice was decreasing at most raster pixels within our study area from 2003 to 2008.
-hist(trend$Slope, 
-     main = &quot;Trend of Arctic Sea Ice from 2003 to 2008&quot;, 
-     xlab = &quot;Trend&quot;, 
-     ylab = &quot;Number of Pixels&quot;,
-     border = &quot;darkgreen&quot;, 
-     col = &quot;green&quot;,
-     xlim = c(-0.04, 0.04),
-     ylim = c(0, 3.5e5))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>## Rasterization
 # Convert the data frame to a spatial one.
 pts &lt;- trend

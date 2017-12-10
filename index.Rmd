@@ -18,8 +18,7 @@ In order to see trends easily in sea ice thickness, you must consider short and 
 3.	Display the thickness for the first month of 2003 and the last month of 2008 to see comparison.
 4.  Download the Arctic boundary to further isolate the study area.
 5.	Create a linear regression displaying the month against the average sea ice thickness for all of the months covered by the study.
-6.  Create a histogram visualizing the overall trend of sea ice thickness from 2003 to 2008 by comparing the trend with the number of pixels covered in the Arctic area.
-7.	Visualize the difference by subtracting the ice thickness in 2003 from that of 2008.
+6.	Visualize the difference by subtracting the ice thickness in 2003 from that of 2008.
 
 
 
@@ -148,19 +147,8 @@ ggplot(avgThickness, aes(Month, avgThickness)) +
        y = "Average Thickness") +
   ggtitle("Average Thickness of Arctic Sea Ice from 2003 to 2008")
 
-# Create a histogram of the slope/trend.
-# As you can see, most slope/trend values here are negative, which indicates that the thickness of sea ice was decreasing at most raster pixels within our study area from 2003 to 2008.
-hist(trend$Slope, 
-     main = "Trend of Arctic Sea Ice from 2003 to 2008", 
-     xlab = "Trend", 
-     ylab = "Number of Pixels",
-     border = "darkgreen", 
-     col = "green",
-     xlim = c(-0.04, 0.04),
-     ylim = c(0, 3.5e5))
 
 ```
-
 
 ```{r}
 ## Rasterization
