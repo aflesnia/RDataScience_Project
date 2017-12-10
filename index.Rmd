@@ -131,8 +131,7 @@ The sea ice thickness of the Arctic in the first month of 2003 is compared to th
 diff <- lastThickness - firstThickness
 names(diff) <- "Thick Difference"
 ```
-
-This next visualization is used in order to see trends across 15 of the 69 total months spread out from February 2003 to October 2008. Similarly to my first plot displaying the years 2003 and 2008 side by side, this plot indicates sea ice thickness being greater in dark blue areas and lesser in lighter areas with colors such as pink or yellow. 
+The linear regression displays the average thickness of the Arctic sea ice over the course of 69 months. The visual displays the month against the average ice thickness. The trend shows a clear negative trend over the course of the 69 months. The blue dots show variation in the short term but overall the trend is negative, indicating that sea ice in the Artic in the long term is declining. This coincides with my hypothesis directly. 
 
 ```{r}
 # Calculate the average thickness for each month
