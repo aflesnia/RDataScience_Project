@@ -308,10 +308,11 @@ div.tocify {
 </div>
 <div id="materials-and-methods" class="section level1">
 <h1>Materials and methods</h1>
-<p>In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows: 1. Acquire and download data from National Snow and Ice Data Center 2. Display the thickness for both 2003 and 2008 via spplot 3. Download the Arctic boundary to isolate the area further 4. Visualize the difference in sea ice thickness 5. Visualize trends across the 69 months via spplot</p>
+<p>In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows: 1. Acquire and download data from National Snow and Ice Data Center 2. Display the thickness for the total 69 months from 2003 to 2008 to see short term trends 3. Display the thickness for the first month of 2003 and the last month of 2008 4. Download the Arctic boundary to further isolate the study area 5. Create a linear regression displaying the month against the average sea ice thickness 6. Visualize the difference via subtracting the 2003 thickness from the 2008 thickness, visualize the slope</p>
 <p>There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled “13” as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.</p>
 <p>Load any required packages in a code chunk (you may need to install some packages):</p>
-<pre class="r"><code>knitr::opts_chunk$set(cache = TRUE, echo = TRUE, warning = FALSE, message = FALSE)  # cache the results for quick compiling
+<pre class="r"><code>knitr::opts_chunk$set(cache = TRUE, echo = TRUE, warning = FALSE, message = FALSE, fig.align = &#39;center&#39;) # cache the results for quick compiling
+
 
 # Loading packages.
 library(raster)
@@ -383,7 +384,7 @@ trend &lt;- trend[complete.cases(trend), ]</code></pre>
 <pre class="r"><code>spplot(st_mask, 
        col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
        main = &quot;Sea Ice Thickness from 2003 to 2008&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>firstThickness &lt;- st_mask[[1]]
 lastThickness &lt;- st_mask[[15]]
 
@@ -393,7 +394,7 @@ names(lastThickness) &lt;- &quot;Last Month&quot;
 spplot(stack(firstThickness, lastThickness), 
        col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
        main = &quot;Sea Ice Thickness in the First Month and Last Month&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>diff &lt;- lastThickness - firstThickness
 names(diff) &lt;- &quot;Thick Difference&quot;</code></pre>
 <p>This next visualization is used in order to see trends across 15 of the 69 total months spread out from February 2003 to October 2008. Similarly to my first plot displaying the years 2003 and 2008 side by side, this plot indicates sea ice thickness being greater in dark blue areas and lesser in lighter areas with colors such as pink or yellow.</p>
@@ -410,7 +411,7 @@ ggplot(avgThickness, aes(Month, avgThickness)) +
   labs(x = &quot;Month&quot;, 
        y = &quot;Average Thickness&quot;) +
   ggtitle(&quot;Average Thickness of Arctic Sea Ice from 2003 to 2008&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code># Create a histogram of the slope/trend.
 # As you can see, most slope/trend values here are negative, which indicates that the thickness of sea ice was decreasing at most raster pixels within our study area from 2003 to 2008.
 hist(trend$Slope, 
@@ -421,7 +422,7 @@ hist(trend$Slope,
      col = &quot;green&quot;,
      xlim = c(-0.04, 0.04),
      ylim = c(0, 3.5e5))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-7-2.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>## Rasterization
 # Convert the data frame to a spatial one.
 pts &lt;- trend
@@ -438,12 +439,12 @@ names(pValue) &lt;- &quot;p-Value&quot;
 
 # Display the results.
 plot(stack(diff, slope), col = rev(brewer.pal(11, &quot;RdYlBu&quot;)), 
-       main = &quot;Change of Sea Ice Thickness from 2003 to 2008&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+       main = &quot;Ice Thickness from 2003 to 2008&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>spplot(pValue, 
        col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
        main = &quot;P-Value of Linear Regression Analysis&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
