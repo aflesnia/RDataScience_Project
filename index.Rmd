@@ -13,7 +13,7 @@ As an environmental student studying climate change, I am highly interested in t
 # Materials and methods
 
 In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows:
-1.	Acquire and download data from National Snow and Ice Data Center.
+1.	Acquire and download data (15 tif files, 1 shapefile) from National Snow and Ice Data Center under the "Data" section and titled "Arctic Sea Ice Freeboard and Thickness"
 2.	Display the thickness for the total 69 months from 2003 to 2008 to see short term trends.
 3.	Display the thickness for the first month of 2003 and the last month of 2008 to see comparison.
 4.  Download the Arctic boundary to further isolate the study area.
