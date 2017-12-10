@@ -382,7 +382,7 @@ trend &lt;- trend[complete.cases(trend), ]</code></pre>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
-<p>The short term trend variation plot comparing sea ice thickness amongst the total 69 months indicates changes in ice density changes in no particular pattern. Areas of dark blue indicate thinner sea ice and light blue indicates thicker ice. The months 13, 21, 33, 45, 57, 61, and 69 all show large areas of dark blue (thinner ice) than months that have thicker ice in these areas. These thinner ice months translate to February 2004, October 2004, October 2005, October 2006, October 2007, February 2008, and October 2008. While there is no straight incline or decline trend month by month, the ice thickness variation seems to increase as the end of the 69 months approaches.</p>
+<p>The short term trend variation plot comparing sea ice thickness amongst the total 69 months indicates changes in ice density changes in no particular pattern. Areas of dark blue indicate thinner sea ice and light blue indicates thicker ice. The months 13, 21, 33, 45, 57, 61, and 69 all show larger areas of dark blue (thinner ice) than months that have thicker ice in these areas. These thinner ice months translate to February 2004, October 2004, October 2005, October 2006, October 2007, February 2008, and October 2008. Areas to easily see such differences would be in the northern to mid Arctic regions. While there is no straight incline or decline trend month by month, the ice thickness variation seems to increase as the end of the 69 months approaches.</p>
 <pre class="r"><code>spplot(st_mask, 
        col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
        main = &quot;Sea Ice Thickness from 2003 to 2008&quot;)</code></pre>
@@ -438,7 +438,7 @@ plot(diff, col = rev(brewer.pal(11, &quot;RdYlBu&quot;)),
        col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
        main = &quot;P-Value of Linear Regression Analysis&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>The P value visual analysis for the linear regression indicates where the most confident areas reside in the study area in terms of the overall trend. The areas in darker blue show the greatest confidence and the areas in light blue and orange indicate less. I believe that due to this data set being only for such a short amount of time on a grand scale, that with more years covered my low p value area could be much larger. I do believe for the data size, this is a good starting point for accurate data.</p>
+<p>The P value visual analysis for the linear regression indicates where the most confident areas reside in the study area in terms of the overall trend. The areas in darker blue show the greatest confidence and the areas in light blue and orange indicate less. I believe that due to this data set being only for such a short amount of time (6 years) on a grand scale, that less confidence overall is expected; Also that with more years monitored in the Arctic, my low p value area could be much larger. I do believe for the data size, this is a good starting point for accurate data.</p>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
