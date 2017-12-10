@@ -174,7 +174,7 @@ pValue <- rasterize(pts, st_mask, field = "pValue", fun = mean, na.rm = TRUE)
 names(pValue) <- "p-Value"
 
 # Display the results.
-plot(stack(diff, slope), col = rev(brewer.pal(11, "RdYlBu")), 
+plot(diff, col = rev(brewer.pal(11, "RdYlBu")), 
        main = "Ice Thickness from 2003 to 2008")
 
 spplot(pValue, 

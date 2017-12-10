@@ -438,7 +438,7 @@ pValue &lt;- rasterize(pts, st_mask, field = &quot;pValue&quot;, fun = mean, na.
 names(pValue) &lt;- &quot;p-Value&quot;
 
 # Display the results.
-plot(stack(diff, slope), col = rev(brewer.pal(11, &quot;RdYlBu&quot;)), 
+plot(diff, col = rev(brewer.pal(11, &quot;RdYlBu&quot;)), 
        main = &quot;Ice Thickness from 2003 to 2008&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>spplot(pValue, 
