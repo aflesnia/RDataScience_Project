@@ -184,6 +184,9 @@ spplot(pValue,
 
 ```
 
+The P value visual analysis for the linear regression indicates where the most confident areas reside in the study area in terms of the overall trend. The areas in darker blue show the greaest confidence and the areas in light blue and orange indicate less. I believe that due to this data set being only for such a short amount of time on a grand scale, that with more years covered my low p value area could be much larger. I do believe for the data size, this is a good starting point for accurate data.
+
+
 # Conclusions
 
 Overall, my hypothesis proved correct as the long term trend is negative and shows a decline in Arctic sea ice. The short term trends, over the 69 months, shows great variation overall but shows more variation towards the later half of the study (towards 2008). The short term trend, as proven, does not have to be negative month to month in order for the long term (6 year) trend to be negative. In a changing world where temperature rise is a growing concern, people often look at climate day to day, week to week, month to month expecting rising temperatures as an indication of climate change. In reality, short term variation often turns into long term negative trends if you look at the bigger picture. This is something I believe to be very crucial when studying and preventing climate change in the future.
