@@ -325,6 +325,8 @@ library(spocc)
 library(tidyr)
 library(broom)</code></pre>
 <pre class="r"><code># Reading files.
+# If you wish to reproduce this data, the file can be found at http://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25 under the title &quot;Arctic Freeboard Sea Ice and Thickness.&quot; There were a large number of files to download as well as a shapefile for the boundary polygon and is too large to load onto my repository. There are 15 tif files to download for the months sampled in this study as well as 1 polygon shapefile to download in order to get the complete data. 
+
 boundary &lt;- readOGR(dsn = &quot;C:/Users/Local1/Documents/R Project/ARPA_polygon&quot;,layer = &quot;ARPA_polygon&quot;)</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
 ## Source: &quot;C:/Users/Local1/Documents/R Project/ARPA_polygon&quot;, layer: &quot;ARPA_polygon&quot;
@@ -443,6 +445,12 @@ plot(diff, col = rev(brewer.pal(11, &quot;RdYlBu&quot;)),
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
+<p>National Snow and Ice Data Center (for data collection and downloading)</p>
+<p><a href="http://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25">http://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25</a></p>
+<p>(for sea ice research)</p>
+<p>Stammherjohn, S. E., et al. “Trends in Antarctic annual sea ice retreat and advance and theirrelation to El Nin˜ o–Southern Oscillation and Southern Annular Modevariability.” JOURNAL OF GEOPHYSICAL RESEARCH, vol. 113, 14 Mar. 2008, onlinelibrary.wiley.com/doi/10.1029/2007JC004269/epdf.</p>
+<p>(for sea ice research)</p>
+<p>Cosimo, J. C., et al. “Accelerated decline in the Arctic sea ice cover.” Geophysical Research Letters, 3 Jan. 2008, onlinelibrary.wiley.com/doi/10.1029/2007GL031972/full.</p>
 <p>=</p>
 </div>
 

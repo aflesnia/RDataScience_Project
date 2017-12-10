@@ -44,6 +44,8 @@ library(broom)
 
 ```{r}
 # Reading files.
+# If you wish to reproduce this data, the file can be found at http://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25 under the title "Arctic Freeboard Sea Ice and Thickness." There were a large number of files to download as well as a shapefile for the boundary polygon and is too large to load onto my repository. There are 15 tif files to download for the months sampled in this study as well as 1 polygon shapefile to download in order to get the complete data. 
+
 boundary <- readOGR(dsn = "C:/Users/Local1/Documents/R Project/ARPA_polygon",layer = "ARPA_polygon")
 boundary <- boundary[boundary$OBJECTID==2,]
 
@@ -187,5 +189,17 @@ spplot(pValue,
 Overall, my hypothesis proved correct as the long term trend is negative and shows a decline in Arctic sea ice. The short term trends, over the 69 months, shows great variation overall but shows more variation towards the later half of the study (towards 2008). The short term trend, as proven, does not have to be negative month to month in order for the long term (6 year) trend to be negative. In a changing world where temperature rise is a growing concern, people often look at climate day to day, week to week, month to month expecting rising temperatures as an indication of climate change. In reality, short term variation often turns into long term negative trends if you look at the bigger picture. This is something I believe to be very crucial when studying and preventing climate change in the future.
 
 # References
+
+National Snow and Ice Data Center (for data collection and downloading)
+
+http://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25
+
+(for sea ice research)
+
+Stammherjohn, S. E., et al. “Trends in Antarctic annual sea ice retreat and advance and theirrelation to El Nin˜ o–Southern Oscillation and Southern Annular Modevariability.” JOURNAL OF GEOPHYSICAL RESEARCH, vol. 113, 14 Mar. 2008, onlinelibrary.wiley.com/doi/10.1029/2007JC004269/epdf.
+
+(for sea ice research)
+
+Cosimo, J. C., et al. “Accelerated decline in the Arctic sea ice cover.” Geophysical Research Letters, 3 Jan. 2008, onlinelibrary.wiley.com/doi/10.1029/2007GL031972/full.
 
 =
