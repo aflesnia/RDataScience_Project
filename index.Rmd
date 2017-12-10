@@ -22,7 +22,7 @@ In order to see trends easily in sea ice thickness, you must consider short and 
 
 
 
-There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled "13" as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.
+There were a total of 69 months being observed in this dataset represented from 2003 to 2008. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled "13" as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.
 
 Load any required packages in a code chunk (you may need to install some packages):
 ```{r, warning=FALSE, message=FALSE, results='hide', echo=TRUE}
@@ -184,7 +184,7 @@ spplot(pValue,
 
 ```
 
-The P value visual analysis for the linear regression indicates where the most confident areas reside in the study area in terms of the overall trend. The areas in darker blue show the greaest confidence and the areas in light blue and orange indicate less. I believe that due to this data set being only for such a short amount of time on a grand scale, that with more years covered my low p value area could be much larger. I do believe for the data size, this is a good starting point for accurate data.
+The P value visual analysis for the linear regression indicates where the most confident areas reside in the study area in terms of the overall trend. The areas in darker blue show the greatest confidence and the areas in light blue and orange indicate less. I believe that due to this data set being only for such a short amount of time on a grand scale, that with more years covered my low p value area could be much larger. I do believe for the data size, this is a good starting point for accurate data.
 
 
 # Conclusions
