@@ -429,12 +429,13 @@ names(pValue) &lt;- &quot;p-Value&quot;
 
 # Display the results.
 plot(diff, col = rev(brewer.pal(11, &quot;RdYlBu&quot;)), 
-       main = &quot;Ice Thickness from 2003 to 2008&quot;)</code></pre>
+       main = &quot;Ice Thickness Difference from 2003 to 2008&quot;)</code></pre>
 <p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The ice thickess difference is displayed from 2003 to 2008. Areas of greater difference are displayed in darker orange. There are large areas of change in the nothern and eastern portions as well as some darker orange in parts of the southern region. This visual indicates the areas of greatest change and coincides with my hypothesis that there would be significant change from 2003 to 2008.</p>
 <pre class="r"><code>spplot(pValue, 
        col.regions = rev(brewer.pal(11, &quot;RdYlBu&quot;)), cuts = 10,
        main = &quot;P-Value of Linear Regression Analysis&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-9-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>

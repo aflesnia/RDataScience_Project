@@ -167,8 +167,14 @@ names(pValue) <- "p-Value"
 
 # Display the results.
 plot(diff, col = rev(brewer.pal(11, "RdYlBu")), 
-       main = "Ice Thickness from 2003 to 2008")
+       main = "Ice Thickness Difference from 2003 to 2008")
 
+```
+
+The ice thickess difference is displayed from 2003 to 2008. Areas of greater difference are displayed in darker orange. There are large areas of change in the nothern and eastern portions as well as some darker orange in parts of the southern region. This visual indicates the areas of greatest change and coincides with my hypothesis that there would be significant change from 2003 to 2008.
+
+
+```{r}
 spplot(pValue, 
        col.regions = rev(brewer.pal(11, "RdYlBu")), cuts = 10,
        main = "P-Value of Linear Regression Analysis")
