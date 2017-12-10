@@ -398,7 +398,7 @@ spplot(stack(firstThickness, lastThickness),
 <p>The sea ice thickness of the Arctic in the first month of 2003 is compared to the thickness of the last month in 2008. The darker the blue in the plot, the thinner the sea ice. The last month image shows clear changes in sea ice density, as indicated by darker blue areas in the northern portion, areas in the southern portion, and some in the eastern portion. This observation coincides with my hypothesis that I will see a decline in sea ice thickness overall from the first month to the last.</p>
 <pre class="r"><code>diff &lt;- lastThickness - firstThickness
 names(diff) &lt;- &quot;Thick Difference&quot;</code></pre>
-<p>The linear regression displays the average thickness of the Arctic sea ice over the course of 69 months. The visual displays the month against the average ice thickness. The trend shows a clear negative trend over the course of the 69 months. The blue dots show variation in the short term but overall the trend is negative, indicating that sea ice in the Artic in the long term is declining. This coincides with my hypothesis directly.</p>
+<p>The linear regression displays the average thickness of the Arctic sea ice over the course of 69 months. The visual displays the month against the average ice thickness. The trend shows a clear negative trend over the course of the 69 months. The blue dots show variation in the short term but overall the trend is negative, indicating that sea ice in the Artic in the long term is declining. The shaded region shows the confidence interval for the regression. This coincides with my hypothesis directly.</p>
 <pre class="r"><code># Calculate the average thickness for each month
 avgThickness &lt;- trend %&gt;% 
   group_by(Month) %&gt;% 
