@@ -13,12 +13,14 @@ As an environmental student studying climate change, I am highly interested in t
 # Materials and methods
 
 In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows:
-1.	Acquire and download data from National Snow and Ice Data Center
-2.	Display the thickness for the total 69 months from 2003 to 2008 to see short term trends
-3.	Display the thickness for the first month of 2003 and the last month of 2008
-4.  Download the Arctic boundary to further isolate the study area
-5.	Create a linear regression displaying the month against the average sea ice thickness
-6.	Visualize the difference via subtracting the 2003 thickness from the 2008 thickness, visualize the slope 
+1.	Acquire and download data from National Snow and Ice Data Center.
+2.	Display the thickness for the total 69 months from 2003 to 2008 to see short term trends.
+3.	Display the thickness for the first month of 2003 and the last month of 2008 to see comparison.
+4.  Download the Arctic boundary to further isolate the study area.
+5.	Create a linear regression displaying the month against the average sea ice thickness for all of the months covered by the study.
+6.  Create a histogram visualizing the overall trend of sea ice thickness from 2003 to 2008 by comparing the trend with the number of pixels covered in the Arctic area.
+7.	Visualize the difference by subtracting the ice thickness in 2003 from that of 2008.
+
 
 
 There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled "13" as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.
@@ -103,9 +105,7 @@ trend <- trend[complete.cases(trend), ]
 
 # Results
 
-The first visualization comparing sea ice thickness in 2003 and 2008 shows slight variation in multiple areas such as the northern portion of the Arctic and also areas bordering land in the southern portion. The darker blue areas are showing thicker sea ice while lighter colors show less thickness. 
-This next plot displays the difference in sea ice thickness between the years 2003 and 2008. The areas of greater change in sea ice thickness are indicated by lighter colors like yellow and orange while areas showing little to no change are indicated in pink. The polygon shape of the Arctic was isolated in order to see the area of focus more clearly.
-
+The short term trend variation plot comparing sea ice thickness amongst the total 69 months indicates changes in ice density changes in no particular pattern. Areas of dark blue indicate thinner sea ice and light blue indicates thicker ice. The months 13, 21, 33, 45, 57, 61, and 69 all show large areas of dark blue (thinner ice) than months that have thicker ice in these areas. These thinner ice months translate to February 2004, October 2004, October 2005, October 2006, October 2007, February 2008, and October 2008. While there is no straight incline or decline trend month by month, the ice thickness variation seems to increase as the end of the 69 months approaches.
 ```{r}
 spplot(st_mask, 
        col.regions = rev(brewer.pal(11, "RdYlBu")), cuts = 10,
@@ -122,7 +122,12 @@ names(lastThickness) <- "Last Month"
 spplot(stack(firstThickness, lastThickness), 
        col.regions = rev(brewer.pal(11, "RdYlBu")), cuts = 10,
        main = "Sea Ice Thickness in the First Month and Last Month")
+```
 
+The sea ice thickness of the Arctic in the first month of 2003 is compared to the thickness of the last month in 2008. The darker the blue in the plot, the thinner the sea ice. The last month image shows clear changes in sea ice density, as indicated by darker blue areas in the northern portion, areas in the southern portion, and some in the eastern portion. This observation coincides with my hypothesis that I will see a decline in sea ice thickness overall from the first month to the last. 
+
+
+```{r}
 diff <- lastThickness - firstThickness
 names(diff) <- "Thick Difference"
 ```
