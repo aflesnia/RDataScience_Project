@@ -14,16 +14,19 @@ As an environmental student studying climate change, I am highly interested in t
 
 In order to see trends easily in sea ice thickness, you must consider short and long term trends. My steps in accomplishing this are as follows:
 1.	Acquire and download data from National Snow and Ice Data Center
-2.	Display the thickness for both 2003 and 2008 via spplot 
-3.	Download the Arctic boundary to isolate the area further
-4.	Visualize the difference in sea ice thickness 
-5.	Visualize trends across the 69 months via spplot
+2.	Display the thickness for the total 69 months from 2003 to 2008 to see short term trends
+3.	Display the thickness for the first month of 2003 and the last month of 2008
+4.  Download the Arctic boundary to further isolate the study area
+5.	Create a linear regression displaying the month against the average sea ice thickness
+6.	Visualize the difference via subtracting the 2003 thickness from the 2008 thickness, visualize the slope 
+
 
 There were a total of 69 months being observed in this dataset represented from 2003 to 208. In order to make the short term data more visually understandable, I chose to start from month 1 and display each month recorded by continuously adding off of the previous months until the final 69th month. I then renamed that specific month and year to the number month it was in the 69 month sequence. For example, February 2004 became titled "13" as this was the 13th month. This makes it simpler for people to see changes short term in terms of a monthly basis.
 
 Load any required packages in a code chunk (you may need to install some packages):
 ```{r, warning=FALSE, message=FALSE, results='hide', echo=TRUE}
-knitr::opts_chunk$set(cache = TRUE, echo = TRUE, warning = FALSE, message = FALSE)  # cache the results for quick compiling
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, warning = FALSE, message = FALSE, fig.align = 'center') # cache the results for quick compiling
+
 
 # Loading packages.
 library(raster)
@@ -172,11 +175,12 @@ names(pValue) <- "p-Value"
 
 # Display the results.
 plot(stack(diff, slope), col = rev(brewer.pal(11, "RdYlBu")), 
-       main = "Change of Sea Ice Thickness from 2003 to 2008")
+       main = "Ice Thickness from 2003 to 2008")
 
 spplot(pValue, 
        col.regions = rev(brewer.pal(11, "RdYlBu")), cuts = 10,
        main = "P-Value of Linear Regression Analysis")
+
 
 ```
 
